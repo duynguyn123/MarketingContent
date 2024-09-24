@@ -10,8 +10,9 @@ class MarketingContent(models.Model):
     image_ids = fields.One2many('marketing.content.image', 'content_id', string='Images', help='Upload multiple images')
     url = fields.Char(string='Link')
     include_link = fields.Boolean(string='Include Link in Post', default=False)
-    category_id = fields.Many2one('content.category', string='Category', help="The category this content belongs to")
     has_posts = fields.Boolean(string='Has Posts', compute='_compute_has_posts', store=True)
+
+
 
     @api.depends('post_ids')
     def _compute_has_posts(self):
@@ -37,7 +38,3 @@ class MarketingContent(models.Model):
                 'default_content_id': self.id,
             }
         }
-
-    def action_save_existing_content(self):
-        # Implement logic for saving selected content
-        pass

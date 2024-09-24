@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <group>
-                                    <field name="title"/>
+                                    <!-- <field name="title"/> -->
                                     <field name="content"/>
                                     <field name="url"/>
                                     <field name="include_link"/>
@@ -36,7 +36,7 @@
                         </div>
                         <notebook>
                             <page string="Schedule">
-                                <!-- Content for Schedule Page -->
+                                <!-- <field name="" widwget="one2many" ></field> -->
                             </page>
                         </notebook>
                     </sheet>

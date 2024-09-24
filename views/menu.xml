@@ -58,18 +58,4 @@
         parent="menu_config" 
         sequence="10"
     />
-    <!-- Menuitem for Content Category -->
-   <menuitem 
-        id="menu_marketing_comment" 
-        name="Manager Comments"
-        action="action_marketing_comment" 
-        parent="menu_config" 
-        sequence="0"
-    />
-    <!-- Menu for Content Category -->
-        <menuitem id="menu_content_category" 
-                  name="Content Categories" 
-                  action="action_content_category" 
-                  parent="menu_config" 
-                  sequence="20"/>
 </odoo>

@@ -9,7 +9,7 @@ class MarketingPost(models.Model):
     body = fields.Text(string='Body')
     date_posted = fields.Datetime(string='Date Posted', default=fields.Datetime.now)
     is_active = fields.Boolean(string='Active', default=True)
-    category_ids = fields.Many2many('marketing.category', string='Categories', help="Categories related to this post")
+
     @api.depends('content_id')
     def _compute_content_title(self):
         for record in self:

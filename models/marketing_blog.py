@@ -24,8 +24,7 @@ class BlogMarketingContent(models.Model):
         vals['content_id'] = content.id
 
         res = super(BlogMarketingContent, self).create(vals)
-
-        # If temp_image is provided, create an image record
+        
         if res.temp_image:
             image = self.env['marketing.content.image'].create({
                 'content_id': res.content_id.id,
@@ -34,7 +33,7 @@ class BlogMarketingContent(models.Model):
             })
             res.content_id.write({'image_ids': [(4, image.id)]})
             res.temp_image = False
-
+        
         return res
 
     def write(self, vals):
@@ -46,13 +45,12 @@ class BlogMarketingContent(models.Model):
             content_vals['url'] = vals['url']
         if 'include_link' in vals:
             content_vals['include_link'] = vals['include_link']
-
+        
         if content_vals:
             self.content_id.write(content_vals)
 
         res = super(BlogMarketingContent, self).write(vals)
-
-        # If temp_image is provided, create an image record
+        
         if 'temp_image' in vals and vals.get('temp_image'):
             image = self.env['marketing.content.image'].create({
                 'content_id': self.content_id.id,
@@ -61,18 +59,16 @@ class BlogMarketingContent(models.Model):
             })
             self.content_id.write({'image_ids': [(4, image.id)]})
             self.temp_image = False
-
+        
         return res
 
     @api.onchange('blog_id')
     def _onchange_blog_post(self):
         if self.blog_id:
-            self.content = self.blog_id.subtitle or ''
+            self.content = self.blog_id.subtitle  # Assuming 'subtitle' is the correct field for subtitle
             self.url = '/blog/%s/post/%s' % (slug(self.blog_id.blog_id), slug(self.blog_id))
-
-            # Check for the correct image field in blog.post
-            if hasattr(self.blog_id, 'image'):
-                self.temp_image = self.blog_id.image
+            if hasattr(self.blog_id, 'image_1920'):
+                self.temp_image = self.blog_id.image_1920  # Set temp_image to blog's background image
             else:
                 self.temp_image = False
         else:

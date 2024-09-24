@@ -40,7 +40,6 @@
         'views/marketing_product_views.xml',
         'views/marketing_content_blog.xml',
         'views/marketing_content_comment_views.xml',
-        'views/marketing_content_category.xml',
         'views/menu.xml',
         
     ],
